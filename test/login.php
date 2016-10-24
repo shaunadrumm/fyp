@@ -16,7 +16,7 @@ include 'dbconnection.php';
 
  	$pass = $_COOKIE['Key_my_site'];
 
- 	 	$check = mysql_query("SELECT * FROM users WHERE username = '$username'")or die(mysql_error());
+ 	 	$check = mysql_query("SELECT * FROM owner WHERE username = '$username'")or die(mysql_error());
 
  	while($info = mysql_fetch_array( $check )) 	
 
@@ -67,7 +67,7 @@ include 'dbconnection.php';
 
  	}
 
- 	$check = mysql_query("SELECT * FROM users WHERE username = '".$_POST['username']."'")or die(mysql_error());
+ 	$check = mysql_query("SELECT * FROM owner WHERE username = '".$_POST['username']."'")or die(mysql_error());
 
 
 
@@ -110,7 +110,7 @@ include 'dbconnection.php';
 $_POST['username'] = stripslashes($_POST['username']); 
 $hour = time() + 3600; 
 setcookie(ID_my_site, $_POST['username'], $hour); 
-setcookie(Key_my_site, $_POST['pass'], $hour, '/');	 
+setcookie(Key_my_site, $_POST['pass'], $hour);	 
  
 //then redirect them to the members area 
 header("Location: members.php"); 

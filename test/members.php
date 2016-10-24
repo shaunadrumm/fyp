@@ -11,7 +11,7 @@ include 'dbconnection.php';
 
  	$username = $_COOKIE['ID_my_site']; 
  	$pass = $_COOKIE['Key_my_site']; 
- 	$check = mysql_query("SELECT * FROM users WHERE username = '$username'")or die(mysql_error()); 
+ 	$check = mysql_query("SELECT * FROM owner WHERE username = '$username'")or die(mysql_error()); 
 
  	while($info = mysql_fetch_array( $check )){ 
 
@@ -33,7 +33,7 @@ include 'dbconnection.php';
 	header("Location: login.php"); 
  }
  
- $sql="SELECT * FROM users WHERE username = '$username'";
+ $sql="SELECT * FROM owner WHERE username = '$username'";
  
  $records=mysql_query($sql);
  
@@ -53,21 +53,21 @@ include 'dbconnection.php';
  
  <?php
  
- while($users=mysql_fetch_assoc($records)){
+ while($owner=mysql_fetch_assoc($records)){
 
 	echo "<tr>";
 	
-	echo "<td>".$users['username']."</td>";
+	echo "<td>".$owner['username']."</td>";
 	
-	echo "<td>".$users['password']."</td>";
+	echo "<td>".$owner['password']."</td>";
 	
-	echo "<td>".$users['ID']."</td>";
+	echo "<td>".$owner['ID']."</td>";
 	
-	echo "<td>".$users['email']."</td>";
+	echo "<td>".$owner['email']."</td>";
 	
-	echo "<td>".$users['address1']."</td>";
+	echo "<td>".$owner['address1']."</td>";
 	
-	echo "<td>".$users['address2']."</td>";
+	echo "<td>".$owner['address2']."</td>";
 	
 	echo "</tr>";
 	 

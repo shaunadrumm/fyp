@@ -18,7 +18,7 @@ if (!get_magic_quotes_gpc()) {
 }
 
 $usercheck = $_POST['username'];
-$check = mysql_query("SELECT username FROM users WHERE username = '$usercheck'") 
+$check = mysql_query("SELECT username FROM owner WHERE username = '$usercheck'") 
 or die(mysql_error());
 $check2 = mysql_num_rows($check);
 
@@ -39,12 +39,12 @@ if (!get_magic_quotes_gpc()) {
 	$_POST['pass'] = addslashes($_POST['pass']);
 	$_POST['username'] = addslashes($_POST['username']);
 	$_POST['email'] = addslashes($_POST['email']);
-	$_POST['address1'] = addslashes($_POST['address1']);
+	
 	
 }
 
 // now we insert it into the database
-$insert = "INSERT INTO users (username, password,email,address1,address2) VALUES ('".$_POST['username']."', '".$_POST['pass']."', '".$_POST['email']."', '".$_POST['address1']."', '".$_POST['address2']."')";
+$insert = "INSERT INTO owner (username, password, email) VALUES ('".$_POST['username']."', '".$_POST['pass']."', '".$_POST['email']."')";
 $add_member = mysql_query($insert);
 ?>
  
@@ -91,17 +91,8 @@ $add_member = mysql_query($insert);
 			</td></tr>
 		</div>
 		
-		<div class="form-group">
-			<tr><td>Address Line 1:</td><td>
-				<input type="text" class="form-control" name="address1" placeholder="Enter the first line of your address" maxlength="100">
-			</td></tr>
-		</div>
 		
-		<div class="form-group">
-			<tr><td>Address Line 2:</td><td>
-				<input type="text" class="form-control" name="address2" placeholder="Enter the second line of your address" maxlength="100">
-			</td></tr>
-		</div>
+		
 		
 		<div>
 			<tr><th colspan=2><input type="submit" name="submit" 

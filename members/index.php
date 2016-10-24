@@ -3,6 +3,8 @@
 mysql_connect("mysql2.mylogin.ie","planmyevente","Lascdatdb6") or die(mysql_error()); 
 mysql_select_db("RG293604_planmyevente") or die(mysql_error()); 
 
+require("functions.php");
+
  //checks cookies to make sure they are logged in 
  if(isset($_COOKIE['ID_my_site'])){ 
 

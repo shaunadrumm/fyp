@@ -3,13 +3,17 @@
 	min-width:500px;
 }
 
+
+
 .jumbotron
 {
 	background-image:url('../images/Jumbotronimg.png');
 	background-attachment:fixed;
-	min-height:500px;
+	max-height:30px;
 	margin-bottom:0px;
+	
 }
+
 
 .alt1
 {
@@ -28,5 +32,6 @@
 .padding{
 	padding-top:20px;
 	padding-bottom:20px;
+	
 }
 

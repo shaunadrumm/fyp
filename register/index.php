@@ -64,10 +64,10 @@ $add_member = mysql_query($insert);
  <input type="text" name="username" maxlength="60">
 
  </td></tr>
+ 
+  <tr><td>Email:</td><td>
 
- <tr><td>Password:</td><td>
-
- <input type="password" name="pass" maxlength="10">
+ <input type="email" name="email" maxlength="60">
 
  </td></tr>
 
