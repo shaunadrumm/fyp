@@ -7,12 +7,44 @@
 
 .jumbotron
 {
-	background-image:url('../images/Jumbotronimg.png');
+	background-image:url('../images/Jumbotronimgg.png');
 	background-attachment:fixed;
-	max-height:30px;
+	min-height:0px;
 	margin-bottom:0px;
 	
 }
+
+#jumbo1
+{
+	background-color:#00a4ff;
+	
+}
+
+#mynavbar
+{
+	background-color:#b8b3b3;
+	
+}
+
+#typemusic{
+	float:left;
+}
+
+#othermusic{
+	float:right;
+	width:82%
+}
+
+#otherfood{
+	float:right;
+	width:82%
+}
+
+#eventbuttons{
+	padding-bottom:15%px
+	
+}
+
 
 
 .alt1
