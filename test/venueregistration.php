@@ -1,11 +1,76 @@
 <?php include 'navbar.php';
 ?>
 
-<?php include 'dbconnection.php';
+ <?php 
+include 'dbconnection.php';
 
+//This code runs if the form has been submitted
+if (isset($_POST['submit'])) { 
+
+
+//This makes sure they did not leave any fields blank - mandatory fields
+if (!$_POST['venuename'] | !$_POST['website'] | !$_POST['address1'] | !$_POST['address2'] | !$_POST['address3'] | !$_POST['city'] | !$_POST['county'] | !$_POST['phonenumber']) {
+	die('You did not complete all of the required fields');
+}
+
+
+// checks if the username is in use
+if (!get_magic_quotes_gpc()) {
+	$_POST['venuename'] = addslashes($_POST['venuename']);
+}
+
+
+$usercheck = $_POST['venuename'];
+$check = mysql_query("SELECT venuename FROM venue WHERE venuename = '$usercheck'") 
+or die(mysql_error());
+$check2 = mysql_num_rows($check);
+
+
+//if the name exists it gives an error
+if ($check2 != 0) {
+ 	die('Sorry,'.$_POST['venuename'].' venue is already registered in our system.');
+}
+
+ // this makes sure both passwords entered match
+//if ($_POST['pass'] != $_POST['pass2']) {
+	//die('Your passwords did not match. ');
+//}
+
+// here we encrypt the password and add slashes if needed
+//$_POST['pass'] = md5($_POST['pass']); 
+
+if (!get_magic_quotes_gpc()) {
+	$_POST['venuename'] = addslashes($_POST['venuename']);
+	$_POST['website'] = addslashes($_POST['website']);
+	$_POST['address1'] = addslashes($_POST['address1']);
+	$_POST['address2'] = addslashes($_POST['address2']);
+	$_POST['address3'] = addslashes($_POST['address3']);
+	$_POST['city'] = addslashes($_POST['city']);
+	$_POST['county'] = addslashes($_POST['county']);
+	$_POST['phonenumber'] = addslashes($_POST['phonenumber']);
+
+
+	
+	
+}
+
+// now we insert it into the database
+$insert = "INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."')";
+$add_member = mysql_query($insert);
 ?>
-
  
+		
+
+ <h1>Registered</h1>
+
+ <p>Thank you, you have registered - you may now <a href="login.php">login</a>.</p>
+
+ <?php 
+ }
+
+ else 
+ {	
+ ?>
  
 </br>
 
@@ -16,13 +81,13 @@
 	
 		<div class="form-group">
 			<tr><td>Venue Name:</td><td>
-				<input type="text" class="form-control" name="username" placeholder="" maxlength="100">
+				<input type="text" class="form-control" name="venuename" placeholder="" maxlength="100">
 			</td></tr>
 		</div>
 			
 		<div class="form-group">
 			<tr><td>Venue website if applicable:</td><td>
-				<input type="url" class="form-control" name="pass2" placeholder="" maxlength="60">
+				<input type="text" class="form-control" name="website" placeholder="" maxlength="60">
 			</td></tr>
 		</div>
 		
@@ -46,108 +111,126 @@
 		
 		<div class="form-group">
 			<tr><td>Venue Address City/Town:</td><td>
-				<input type="text" class="form-control" name="addresscity" placeholder="" maxlength="100">
+				<input type="text" class="form-control" name="city" placeholder="" maxlength="100">
 			</td></tr>
 		</div>
 		
 		<div class="form-group">
 			<tr><td>Venue Address County:</td><td>
-				<input type="text" class="form-control" name="addresscounty" placeholder="" maxlength="100">
+				<input type="text" class="form-control" name="county" placeholder="" maxlength="100">
 			</td></tr>
 		</div>
 		
 		<div class="form-group">
 			<tr><td>Direct Phone Number:</td><td>
-				<input type="number" class="form-control" name="phone" placeholder="" maxlength="100">
+				<input type="number" class="form-control" name="phonenumber" placeholder="" maxlength="100">
 			</td></tr>
 		</div>
 		
-			
 		<tr><td>Please select your venue type:</td><td>
-		<div class="row">
-  <div class="col-lg-12">
-    <div class="input-group">
-      <div class="input-group-btn">
-	  </td></tr>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Pub</a></li>
-          <li><a href="#">Hotel</a></li>
-          <li><a href="#">Restaurant</a></li>
-		  <li><a href="#">Other</a></li>          
-        </ul>
-      </div><!-- /btn-group -->
-      <input type="text" class="form-control" placeholder="If Other, please specify" maxlength="50">
-    </div>
-  </div>
-  
-  </div>
+		<div class="form-group">
+      
+      <select class="form-control" id="sel1" name="type">
+        <option>Other</option>
+		<option>Pub</option>
+        <option>Hotel</option>
+        <option>Restaurant</option>
+        
+      </select>
+	  
+	  <input type="text" class="form-control" name="othertype" placeholder="If Other, please specify" maxlength="50">
+	  </div>
+	  
+		<!--
+		
   </br>
   
-  <tr><td>Please select which type of space you can allow customers to book:</td><td>
-  	<div class="input-group" id="eventbuttons">
-		<div class="input-group-btn" >
-		</td></tr>
-		  <button type="button" class="btn btn-default">Table</button>
-		  <button type="button" class="btn btn-default">Reserved Area</button>
-		  <button type="button" class="btn btn-default">Private Function Rooom</button>
-		  <button type="button" class="btn btn-default">Full Venue</button>
-		  
-		  
-		</div>
-		
-		</div>
+  <tr><td>Please select which type of space you can allow customers to book:</td><td></br>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="tables" value="Y"> Table
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="floor" value="Y"> Reserved Area
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="room" value="Y"> Private Function Room
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="complete" value="Y"> Full Venue
+		</label>
+  
 		
 		</br>
+		</br>
+		
+		
+		<!--
 		<tr><td>Where applicable please enter the price for each space for one night:</td><td>
-		<div class="input-group">
-		</td></tr>
-  <span class="input-group-addon" id="basic-addon1">Table:</span>
-  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
-</div>
-	<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
-  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
-</div>
-	<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
-  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
-</div>
-	<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
-  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
-</div>
+			<div class="input-group">
+			</td></tr>
+			  <span class="input-group-addon" id="basic-addon1">Table:</span>
+			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
+			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
+			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
+			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			</div>
+			
+			
+			
+			
 		</br>
 		
-				<tr><td>Where applicable please enter the minimum number of people and maximum number of people allowed for each space:</td><td>
-		<div class="input-group">
-		</td></tr>
-  <span class="input-group-addon" id="basic-addon1">Table:</span>
-  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
-</div>
-	<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
-  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
-</div>
-	<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
-  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
-</div>
-	<div class="input-group">
-  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
-  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
-</div>
+		<!--
+		
+		<tr><td>Where applicable please enter the minimum number of people and maximum number of people allowed for each space:</td><td>
+			<div class="input-group">
+			</td></tr>
+			  <span class="input-group-addon" id="basic-addon1">Table:</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			</div>
 		
 		</br>
+		
+		
+		
+		
 		<tr><td>Please select which type of events you cater to:</td><td>
 		
-		<div class="input-group" id="eventbuttons">
-		<div class="input-group-btn" >
-		</td></tr>
+			<div class="input-group" id="eventbuttons">
+			<div class="input-group-btn" >
+			</td></tr>
+			
 		  <button type="button" class="btn btn-default">Chistenings</button>
 		  <button type="button" class="btn btn-default">18th Parties</button>
 		  <button type="button" class="btn btn-default">21st Parties</button>
@@ -160,30 +243,34 @@
 		  <button type="button" class="btn btn-default">Sports</button>
 		  <button type="button" class="btn btn-default">Other</button>
 		  
-		</div>
-		
-		</div>
-	</br>
-	<div class="form-group">
-			<tr><td>If Other, Please Specify:</td><td>
-				<input type="text" class="form-control" name="eventtype" placeholder="" >
-			</td></tr>
-		</div>
+			</div>
+			</div>
+			</br>
+			<div class="form-group">
+				<tr><td>If Other, Please Specify:</td><td>
+					<input type="text" class="form-control" name="eventtype" placeholder="" >
+				</td></tr>
+			</div>
 
 
+<!--
 
-
+			
 		<div class="form-group">
 			<tr><td>Start Hour if applicable:</td><td>
 				<input type="time" class="form-control" name="starthour" placeholder="" >
 			</td></tr>
 		</div>
 		
+		
+		
 		<div class="form-group">
 			<tr><td>Closing Hour if applicable:</td><td>
 				<input type="time" class="form-control" name="starthour" placeholder="" >
 			</td></tr>
 		</div>
+		
+		
 		
 		<tr><td>Do you provide internet?  If yes, please include details:</td><td>
 		<div class="row">
@@ -286,7 +373,7 @@
 		</div>
 		
 		</br>
-			
+			<!--
 		<div class="form-group">
 			<tr><td>Photo 1:</td><td>
 				<input type="number" class="form-control" name="" placeholder="" maxlength="100">
@@ -324,10 +411,13 @@
 		</div>
 		
 	
+
 		
+		<form action="upload1.php" method="post" enctype="multipart/form-data">
+			Select your first image to upload:
+			<input type="file" name="fileToUpload" id="fileToUpload">
+		</form>
 		</br>
-		
-		
 		
 		<tr><td>Music:</td><td></br>
 		<div class="btn-group" role="group" aria-label="MUSIC" id="typemusic">
@@ -404,7 +494,7 @@
 		</br>
 		</br>
 		</br>
-		
+		-->
 		
 		
 		<div>
@@ -418,5 +508,9 @@
 
 
 
-
+ <?php
+ }
+ ?> 
+ <?php include 'footer.php';
+?>
 
