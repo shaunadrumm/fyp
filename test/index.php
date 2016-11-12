@@ -4,10 +4,10 @@
 	
 	<div class="jumbotron">
 		<div class"container">
-		<h1>Hello World!</h1>
-		<p>This is our demo site, I hope you like it</p>
-		<p>All code can be found on my GitHub account, and its free to use, modify and sell!</p>
-		<p><a href="http://www.google.com" target="_blank" class="btn btn-primary btn-lg">Show me the code!</a></p>
+		<h1>Welcome to Plan My Event!</h1>
+		<p>A booking site for all venues in Ireland!</p>
+		<p>Search below to book directly through our site!</p>
+		
 		</div>
 	</div>
 	
@@ -15,24 +15,24 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
-				<h2 class="text-center">Past work</h2>
+				<h2 class="text-center">What we can do for you:</h2>
 				<p class="text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
 				<a href="#" class="btn btn-default">Tell me more..</a>
 			</div>
 			<div class="col-md-4">
-				<h2 class="text-center">Past work</h2>
+				<h2 class="text-center">What our venue owners say:</h2>
 				<p class="text-justify">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
 				<a href="#" class="btn btn-default">Tell me more..</a>
 			</div>
 			<div class="col-md-4">
-				<h2 class="text-center">Past work</h2>
+				<h2 class="text-center">What our customers say:</h2>
 				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 				<a href="#" class="btn btn-default">Tell me more..</a>
 			</div>
 		</div>
 	</div>
 	</div>
-	
+	<!--
 	<div class="container">
 		<div class="row padding">
 			<div class="col-md-6">
@@ -67,7 +67,7 @@
 		</div>
 		<hr />
 	</div>
-	
+	-->
 	<div class="container">
 		<form role="form" action="contact.php" method="post">
 			<div class="form-group">

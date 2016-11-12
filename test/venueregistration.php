@@ -48,6 +48,7 @@ if (!get_magic_quotes_gpc()) {
 	$_POST['city'] = addslashes($_POST['city']);
 	$_POST['county'] = addslashes($_POST['county']);
 	$_POST['phonenumber'] = addslashes($_POST['phonenumber']);
+	$_POST['othereventtype'] = addslashes($_POST['othereventtype']);
 
 
 	
@@ -55,9 +56,50 @@ if (!get_magic_quotes_gpc()) {
 }
 
 // now we insert it into the database
-$insert = "INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."')";
-$add_member = mysql_query($insert);
+//$insert = "INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."')";
+//mysql_
+//$insert="START TRANSACTION;
+//INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."');
+//COMMIT;";
+//$add_member = mysql_query($insert);
 ?>
+
+<?php
+
+ 
+
+ 
+
+
+
+
+$dbConnection = mysqli_connect('mysql2.mylogin.ie', 'planmyevente', '', 'RG293604_planmyevente');
+
+
+
+$query1 = "INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype, christenings, eighteenparties, twentyoneparties, otheragesparties, kidsparties, henstagparties, weddings, funerals, corporate, sports, otherparties, othereventtype, starthour, closehour, internet, internetdetails, parking, parkingdetails, children, childrendetails, foodyes, foodno, hplatter, cplatter, fullmeal, fother, fotherdetails, costhplatter, costcplatter, costfother, transport, transportdetails, smoking, smokingdetails) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."', '".$_POST['christenings']."', '".$_POST['eighteenparties']."', '".$_POST['twentyoneparties']."', '".$_POST['otheragesparties']."', '".$_POST['kidsparties']."', '".$_POST['henstagparties']."', '".$_POST['weddings']."', '".$_POST['funerals']."', '".$_POST['corporate']."', '".$_POST['sports']."', '".$_POST['otherparties']."', '".$_POST['othereventtype']."', '".$_POST['starthour']."', '".$_POST['closehour']."', '".$_POST['internet']."', '".$_POST['internetdetails']."', '".$_POST['parking']."', '".$_POST['parkingdetails']."', '".$_POST['children']."', '".$_POST['childrendetails']."', '".$_POST['foodyes']."', '".$_POST['foodno']."', '".$_POST['hplatter']."', '".$_POST['cplatter']."', '".$_POST['fullmeal']."', '".$_POST['fother']."', '".$_POST['fotherdetails']."', '".$_POST['costhplatter']."', '".$_POST['costcplatter']."', '".$_POST['costfother']."', '".$_POST['transport']."', '".$_POST['transportdetails']."', '".$_POST['smoking']."', '".$_POST['smokingdetails']."')";
+
+
+$query2 = "INSERT INTO space (tables, floor, room, complete, costoftables, costoffloor, costofroom, costofcomplete, minpeoptables, maxpeoptables, minpeopfloor, maxpeopfloor, minpeoproom, maxpeoproom, minpeopcomplete, maxpeopcomplete) VALUES ('".$_POST['tables']."', '".$_POST['floor']."', '".$_POST['room']."', '".$_POST['complete']."', '".$_POST['costoftables']."', '".$_POST['costoffloor']."', '".$_POST['costofroom']."', '".$_POST['costofcomplete']."', '".$_POST['minpeoptables']."', '".$_POST['maxpeoptables']."', '".$_POST['minpeopfloor']."', '".$_POST['maxpeopfloor']."', '".$_POST['minpeoproom']."', '".$_POST['maxpeoproom']."', '".$_POST['minpeopcomplete']."', '".$_POST['maxpeopcomplete']."')";
+
+
+ 
+
+$result = mysqli_query($dbConnection, $query1);
+
+$result = mysqli_query($dbConnection, $query2);
+
+
+    mysqli_commit($dbConnection);
+
+    echo "All queries were executed successfully";
+
+
+
+mysqli_close($dbConnection);
+
+?>
+
  
 		
 
@@ -141,7 +183,7 @@ $add_member = mysql_query($insert);
 	  <input type="text" class="form-control" name="othertype" placeholder="If Other, please specify" maxlength="50">
 	  </div>
 	  
-		<!--
+		
 		
   </br>
   
@@ -162,98 +204,109 @@ $add_member = mysql_query($insert);
 		
 		</br>
 		</br>
-		
-		
-		<!--
-		<tr><td>Where applicable please enter the price for each space for one night:</td><td>
+			
+					<tr><td>Where applicable please enter the price for each space for one night:</td><td>
 			<div class="input-group">
 			</td></tr>
 			  <span class="input-group-addon" id="basic-addon1">Table:</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costoftables" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costoffloor" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costofroom" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costofcomplete" aria-describedby="basic-addon1">
 			</div>
 			
 			
-			
+		
 			
 		</br>
 		
-		<!--
 		
-		<tr><td>Where applicable please enter the minimum number of people and maximum number of people allowed for each space:</td><td>
+			<tr><td>Where applicable please enter the minimum number of people and maximum number of people allowed for each space:</td><td>
 			<div class="input-group">
 			</td></tr>
 			  <span class="input-group-addon" id="basic-addon1">Table:</span>
-			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeoptables" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeoptables" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
-			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeopfloor" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeopfloor" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
-			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeoproom" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeoproom" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
-			  <input type="number" class="form-control" placeholder="Minimum Number" aria-describedby="basic-addon1">
-			  <input type="number" class="form-control" placeholder="Maximum Number" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeopcomplete" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeopcomplete" aria-describedby="basic-addon1">
 			</div>
-		
+			
+			
+
 		</br>
 		
-		
-		
-		
-		<tr><td>Please select which type of events you cater to:</td><td>
-		
-			<div class="input-group" id="eventbuttons">
-			<div class="input-group-btn" >
-			</td></tr>
-			
-		  <button type="button" class="btn btn-default">Chistenings</button>
-		  <button type="button" class="btn btn-default">18th Parties</button>
-		  <button type="button" class="btn btn-default">21st Parties</button>
-		  <button type="button" class="btn btn-default">Other Birthday Ages above 21</button>
-		  <button type="button" class="btn btn-default">Kid's Parties</button>
-		  <button type="button" class="btn btn-default">Hen/Stag Parties</button>
-		  <button type="button" class="btn btn-default">Weddings</button>
-		  <button type="button" class="btn btn-default">Funerals</button>
-		  <button type="button" class="btn btn-default">Corporate</button>
-		  <button type="button" class="btn btn-default">Sports</button>
-		  <button type="button" class="btn btn-default">Other</button>
-		  
-			</div>
-			</div>
+		  <tr><td>Please select which type of events you cater to:</td><td></br>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="christenings" value="Y"> Chistenings
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="eighteenparties" value="Y"> 18th Parties
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="twentyoneparties" value="Y"> 21st Parties
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="otheragesparties" value="Y"> Other Birthday Ages above 21
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox5" name="kidsparties" value="Y"> Kid's Parties
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox6" name="henstagparties" value="Y"> Hen/Stag Parties
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox7" name="weddings" value="Y"> Weddings
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox8" name="funerals" value="Y"> Funerals
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox9" name="corporate" value="Y"> Corporate
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox10" name="sports" value="Y"> Sports
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox11" name="otherparties" value="Y"> Other
+		</label>
+	
 			</br>
 			<div class="form-group">
 				<tr><td>If Other, Please Specify:</td><td>
-					<input type="text" class="form-control" name="eventtype" placeholder="" >
+					<input type="text" class="form-control" name="othereventtype" placeholder="" >
 				</td></tr>
 			</div>
 
 
-<!--
+
 
 			
 		<div class="form-group">
@@ -266,7 +319,7 @@ $add_member = mysql_query($insert);
 		
 		<div class="form-group">
 			<tr><td>Closing Hour if applicable:</td><td>
-				<input type="time" class="form-control" name="starthour" placeholder="" >
+				<input type="time" class="form-control" name="closehour" placeholder="" >
 			</td></tr>
 		</div>
 		
@@ -277,9 +330,9 @@ $add_member = mysql_query($insert);
 			<div class="col-lg-12">
 				<div class="input-group">
 				<span class="input-group-addon">
-				<input type="checkbox" aria-label="">
+				<input type="checkbox" name="internet" value="Y">
 				</span>
-				<input type="text" class="form-control" aria-label="">
+				<input type="text" class="form-control" name="internetdetails">
 				</div>
 				</td></tr>
 			</div>
@@ -293,9 +346,9 @@ $add_member = mysql_query($insert);
 			<div class="col-lg-12">
 				<div class="input-group">
 				<span class="input-group-addon">
-				<input type="checkbox" aria-label="">
+				<input type="checkbox" name="parking" value="Y">
 				</span>
-				<input type="text" class="form-control" aria-label="">
+				<input type="text" class="form-control" name="parkingdetails" >
 				</div>
 				</td></tr>
 			</div>
@@ -308,9 +361,9 @@ $add_member = mysql_query($insert);
 			<div class="col-lg-12">
 				<div class="input-group">
 				<span class="input-group-addon">
-				<input type="checkbox" aria-label="">
+				<input type="checkbox" name="children" value="Y">
 				</span>
-				<input type="text" class="form-control" aria-label="">
+				<input type="text" class="form-control" name="childrendetails">
 				</div>
 				</td></tr>
 			</div>
@@ -319,28 +372,52 @@ $add_member = mysql_query($insert);
 		</br>
 
 			<tr><td>Do you include food:</td><td></br>
-		<div class="btn-group" role="group" aria-label="MUSIC" id="typemusic">
-		</td></tr>
-			<button type="button" class="btn btn-default">Yes</button>
-			<button type="button" class="btn btn-default">No</button>
-		</div>
-		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Which type?
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#">Hot Platter</a></li>
-				<li><a href="#">Cold Platter</a></li>
-				<li><a href="#">Full Meal</a></li>
-				<li><a href="#">Other</a></li>
-			</ul>
-		</div>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox12" name="foodyes" value="Y"> Yes
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox13" name="foodno" value="Y"> No
+		</label>
+		</br>
 		
+		<tr><td>Which Type:</td><td></br>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox14" name="hplatter" value="Y"> Hot Platter
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox15" name="cplatter" value="Y"> Cold Platter
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox16" name="fullmeal" value="Y"> Full Meal
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox17" name="fother" value="Y"> Other
+		</label>
 		
-		<div class="form-group" id="otherfood">
-				<input type="text" class="form-control" name="foodother" placeholder="If Other, Please Specify" maxlength="100" >
-		</div>
+	</br>
+			<div class="form-group">
+				<tr><td>If Other, Please Specify:</td><td>
+					<input type="text" class="form-control" name="fotherdetails">
+				</td></tr>
+			</div>
+			
+			</br>
+					<tr><td>Where applicable please enter the price for each food type for one quantity:</td><td>
+			<div class="input-group">
+			</td></tr>
+			  <span class="input-group-addon" id="basic-addon1">Hot Platter:</span>
+			  <input type="number" class="form-control" placeholder="€" name="costhplatter" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Cold Platter:</span>
+			  <input type="number" class="form-control" placeholder="€" name="costcplatter" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Other</span>
+			  <input type="number" class="form-control" placeholder="€" name="costfother" aria-describedby="basic-addon1">
+			</div>
 		
 		</br>
 		
@@ -349,9 +426,9 @@ $add_member = mysql_query($insert);
 			<div class="col-lg-12">
 				<div class="input-group">
 				<span class="input-group-addon">
-				<input type="checkbox" aria-label="">
+				<input type="checkbox" name="transport" value="Y">
 				</span>
-				<input type="text" class="form-control" aria-label="">
+				<input type="text" class="form-control" name="transportdetails">
 				</div>
 				</td></tr>
 			</div>
@@ -364,16 +441,22 @@ $add_member = mysql_query($insert);
 			<div class="col-lg-12">
 				<div class="input-group">
 				<span class="input-group-addon">
-				<input type="checkbox" aria-label="">
+				<input type="checkbox" name="smoking" value="Y">
 				</span>
-				<input type="text" class="form-control" aria-label="">
+				<input type="text" class="form-control" name="smokingdetails">
 				</div>
 				</td></tr>
 			</div>
 		</div>
 		
 		</br>
-			<!--
+		
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+		Select image to upload:
+		<input type="file" name="fileToUpload" id="fileToUpload">
+    
+
+		<!--	
 		<div class="form-group">
 			<tr><td>Photo 1:</td><td>
 				<input type="number" class="form-control" name="" placeholder="" maxlength="100">
@@ -488,20 +571,19 @@ $add_member = mysql_query($insert);
 		</div>
 		
 		
-
-
+-->
 		
 		</br>
 		</br>
 		</br>
-		-->
+		
 		
 		
 		<div>
-			<tr><th colspan=2><input type="submit" name="submit" 
-			value="Submit Registration"></th></tr> </table>
+			<input type="submit" name="submit" 
+			value="Submit Registration">
 		</div>
-		
+		</form>
 		</br>
 		</br>
 		</br>

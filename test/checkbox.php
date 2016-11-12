@@ -9,47 +9,18 @@ include 'dbconnection.php';
 //This code runs if the form has been submitted
 if (isset($_POST['submit'])) { 
 
-//This makes sure they did not leave any fields blank - mandatory fields
-//if (!$_POST['venuename'] | !$_POST['website'] | !$_POST['address1'] | !$_POST['address2'] | !$_POST['address3'] | !$_POST['city'] | !$_POST['county'] | !$_POST['phonenumber'] | !$_POST['type'] | !$_POST['othertype'] ) {
-	//die('You did not complete all of the required fields');
-//}
-
-// checks if the username is in use
-//if (!get_magic_quotes_gpc()) {
-//	$_POST['venuename'] = addslashes($_POST['venuename']);
-//}
-
-//$usercheck = $_POST['venuename'];
-//$check = mysql_query("SELECT venuename FROM venue WHERE venuename = '$usercheck'") 
-//or die(mysql_error());
-//$check2 = mysql_num_rows($check);
-
-//if the name exists it gives an error
-//if ($check2 != 0) {
- //	die('Sorry,'.$_POST['venuename'].' venue is already registered in our system.');
-//}
-
- // this makes sure both passwords entered match
-//if ($_POST['pass'] != $_POST['pass2']) {
-	//die('Your passwords did not match. ');
-//}
-
-// here we encrypt the password and add slashes if needed
-//$_POST['pass'] = md5($_POST['pass']); 
 
 if (!get_magic_quotes_gpc()) {
 
-	$_POST['tables'] = addslashes($_POST['tables']);
-	$_POST['floor'] = addslashes($_POST['floor']);
-	$_POST['room'] = addslashes($_POST['room']);
-	$_POST['complete'] = addslashes($_POST['complete']);
+
+	
 	
 	
 }
 
 // now we insert it into the database
 
-$insert = "INSERT INTO space (tables, floor, room, complete) VALUES ('".$_POST['tables']."', '".$_POST['floor']."', '".$_POST['room']."', '".$_POST['complete']."')";
+$insert = "INSERT INTO space (tables, floor, room, complete, costoftables, costoffloor, costofroom, costofcomplete, minpeoptables, maxpeoptables, minpeopfloor, maxpeopfloor, minpeoproom, maxpeoproom, minpeopcomplete, maxpeopcomplete) VALUES ('".$_POST['tables']."', '".$_POST['floor']."', '".$_POST['room']."', '".$_POST['complete']."', '".$_POST['costoftables']."', '".$_POST['costoffloor']."', '".$_POST['costofroom']."', '".$_POST['costofcomplete']."', '".$_POST['minpeoptables']."', '".$_POST['maxpeoptables']."', '".$_POST['minpeopfloor']."', '".$_POST['maxpeopfloor']."', '".$_POST['minpeoproom']."', '".$_POST['maxpeoproom']."', '".$_POST['minpeopcomplete']."', '".$_POST['maxpeopcomplete']."')";
 $add_member = mysql_query($insert);
 
 ?>
@@ -93,28 +64,56 @@ $add_member = mysql_query($insert);
 			<div class="input-group">
 			</td></tr>
 			  <span class="input-group-addon" id="basic-addon1">Table:</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costoftables" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costoffloor" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costofroom" aria-describedby="basic-addon1">
 			</div>
 			
 			<div class="input-group">
 			  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
-			  <input type="number" class="form-control" placeholder="€" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="€" name="costofcomplete" aria-describedby="basic-addon1">
 			</div>
 			
 			
 		
 			
 		</br>
+		
+		
+			<tr><td>Where applicable please enter the minimum number of people and maximum number of people allowed for each space:</td><td>
+			<div class="input-group">
+			</td></tr>
+			  <span class="input-group-addon" id="basic-addon1">Table:</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeoptables" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeoptables" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Reserved Area:</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeopfloor" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeopfloor" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Private Function Room:</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeoproom" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeoproom" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group">
+			  <span class="input-group-addon" id="basic-addon1">Full Venue</span>
+			  <input type="number" class="form-control" placeholder="Minimum Number" name="minpeopcomplete" aria-describedby="basic-addon1">
+			  <input type="number" class="form-control" placeholder="Maximum Number" name="maxpeopcomplete" aria-describedby="basic-addon1">
+			</div>
+			
 			
 			<div>
 			<tr><th colspan=2><input type="submit" name="submit" 
