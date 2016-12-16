@@ -12,28 +12,32 @@
  <title>Register</title>
  </head>
  <body>
+ <div id="headerimage">
+ 
+ </div>
+ <div id="wrapper">
  <div class="navbar-static-top" id="mynavbar"> 
 		<div class="container">
 			<div class="navbar-brand" id="navbarimage">
-				<img class="media-object" src="../images\logo1.png" alt="planmyevent.eu logo">
+				<img class="media-object" src="../images\mylogoo.jpg" alt="planmyevent.eu logo">
 			</div>
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
 				Menu
 			</button>
 			<div class="collapse navbar-collapse navHeaderCollapse" id="navbaritems">
 				<ul class="nav navbar-nav navbar-right" id="navbaritems2">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="venueregistration.php">Venue Register</a></li>
-					<li><a href="venueregistrationconfirmation.php">Venue Register confirmation</a></li>
-					<li><a href="register.php">Owner Register</a></li>
-					<li><a href="login.php">Login</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="search.php">Book a venue</a></li>
 					<li><a href="addserv.php">Additional Services</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="contact.php">Contact</a></li>
+					<li><a href="login.php">Login</a></li>
+					<li><a href="register.php">Register</a></li>					
 				</ul>
 			</div>
 		</div>
 	</div>
+	</div>
+	
 	<div class="container">
 	
 	

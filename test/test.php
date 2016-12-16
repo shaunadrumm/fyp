@@ -3,16 +3,15 @@
 <body>
 
 <form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    
+    Select first image to upload:
+    <input type="file" name="photo1" id="photo1">
+    <div>
+			<tr><th colspan=2><input type="submit" name="submit" 
+			value="Submit Registration!"></th></tr> </table>
+		</div>
 </form>
 
 
-<div>
-			<input type="submit" name="submit" 
-			value="Submit Registration">
-		</div>
 
 
 </body>

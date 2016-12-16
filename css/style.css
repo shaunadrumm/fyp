@@ -3,16 +3,97 @@
 	min-width:500px;
 }
 
+.wizard .content {
+    min-height: 100px;
+}
+.wizard .content > .body {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    position: relative;
+}
 
 
-.jumbotron
-{
-	background-image:url('../images/Jumbotronimgg.png');
-	background-attachment:fixed;
-	min-height:0px;
-	margin-bottom:0px;
+
+#homejumbo{
+	background-color:#e0e6f4;
+	color:#6f3a83;
+	margin-top:30px;
+	min-height:300px;
+}
+
+#adminconsole{
+	background-color:#e0e6f4;
+	margin-top:30px;
+	min-height:300px;
+	padding-left:25%;
+}
+
+#empbutton{
+	background-color:#6f3a83;
+	color:#e0e6f4;
+	min-height:100px;
+	min-width:200px;
+}
+
+#venbutton{
+	background-color:#6f3a83;
+	color:#e0e6f4;
+	min-height:100px;
+	min-width:200px;
+}
+
+#boobutton{
+	background-color:#6f3a83;
+	color:#e0e6f4;
+	min-height:100px;
+	min-width:200px;
+}
+
+#revbutton{
+	background-color:#6f3a83;
+	color:#e0e6f4;
+	min-height:100px;
+	min-width:200px;
+}
+
+#dasbutton{
+	background-color:#6f3a83;
+	color:#e0e6f4;
+	min-height:100px;
+	min-width:200px;
+}
+
+#detbutton{
+	background-color:#6f3a83;
+	color:#e0e6f4;
+	min-height:100px;
+	min-width:200px;
+}
+
+#headerimage{
+	background-image:url('../images/background1.jpg');
+	padding-top:0px;
+	padding-right:60px;
+	padding-left:60px;
+	min-height:150px;
+}
+
+#navbarimage{
+	padding-top:0px;
+	margin-bottom:20px;
+}
+
+#navbaritems{
+	padding-right:50px;
+	padding-top:20px;
+}
+
+#navbaritems2{
 	
 }
+
+
 
 #jumbo1
 {
@@ -22,7 +103,7 @@
 
 #mynavbar
 {
-	background-color:#b8b3b3;
+	background-color:black;
 	
 }
 
@@ -45,20 +126,15 @@
 	
 }
 
-
-
-.alt1
-{
-	background:#eee;
-	min-height:400px;
-}
-
 .alt2
 {
-	background:#333;
+	background:black;
 	min-height:150px;
 	color:#fff;
 	text-align:center;
+}
+#bottomblock{
+	
 }
 
 .padding{

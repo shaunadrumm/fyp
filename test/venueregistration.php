@@ -1,4 +1,4 @@
-<?php include 'navbar.php';
+<?php include 'navbar2.php';
 ?>
 
  <?php 
@@ -31,13 +31,6 @@ if ($check2 != 0) {
  	die('Sorry,'.$_POST['venuename'].' venue is already registered in our system.');
 }
 
- // this makes sure both passwords entered match
-//if ($_POST['pass'] != $_POST['pass2']) {
-	//die('Your passwords did not match. ');
-//}
-
-// here we encrypt the password and add slashes if needed
-//$_POST['pass'] = md5($_POST['pass']); 
 
 if (!get_magic_quotes_gpc()) {
 	$_POST['venuename'] = addslashes($_POST['venuename']);
@@ -49,51 +42,36 @@ if (!get_magic_quotes_gpc()) {
 	$_POST['county'] = addslashes($_POST['county']);
 	$_POST['phonenumber'] = addslashes($_POST['phonenumber']);
 	$_POST['othereventtype'] = addslashes($_POST['othereventtype']);
+	$_POST['internetdetails'] = addslashes($_POST['internetdetails']);
+	$_POST['parkingdetails'] = addslashes($_POST['parkingdetails']);
+	$_POST['childrendetails'] = addslashes($_POST['childrendetails']);
+	$_POST['fotherdetails'] = addslashes($_POST['fotherdetails']);
+	$_POST['transportdetails'] = addslashes($_POST['transportdetails']);
+	$_POST['smokingdetails'] = addslashes($_POST['smokingdetails']);
+	$_POST['motherdetails'] = addslashes($_POST['motherdetails']);
 
 
-	
 	
 }
 
-// now we insert it into the database
-//$insert = "INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."')";
-//mysql_
-//$insert="START TRANSACTION;
-//INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."');
-//COMMIT;";
-//$add_member = mysql_query($insert);
+
 ?>
 
 <?php
 
- 
+$dbConnection = mysqli_connect('mysql2.mylogin.ie', 'planmyevente', '88Shauna88', 'RG293604_planmyevente');
 
- 
-
-
-
-
-$dbConnection = mysqli_connect('mysql2.mylogin.ie', 'planmyevente', '', 'RG293604_planmyevente');
-
-
-
-$query1 = "INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype, christenings, eighteenparties, twentyoneparties, otheragesparties, kidsparties, henstagparties, weddings, funerals, corporate, sports, otherparties, othereventtype, starthour, closehour, internet, internetdetails, parking, parkingdetails, children, childrendetails, foodyes, foodno, hplatter, cplatter, fullmeal, fother, fotherdetails, costhplatter, costcplatter, costfother, transport, transportdetails, smoking, smokingdetails) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."', '".$_POST['christenings']."', '".$_POST['eighteenparties']."', '".$_POST['twentyoneparties']."', '".$_POST['otheragesparties']."', '".$_POST['kidsparties']."', '".$_POST['henstagparties']."', '".$_POST['weddings']."', '".$_POST['funerals']."', '".$_POST['corporate']."', '".$_POST['sports']."', '".$_POST['otherparties']."', '".$_POST['othereventtype']."', '".$_POST['starthour']."', '".$_POST['closehour']."', '".$_POST['internet']."', '".$_POST['internetdetails']."', '".$_POST['parking']."', '".$_POST['parkingdetails']."', '".$_POST['children']."', '".$_POST['childrendetails']."', '".$_POST['foodyes']."', '".$_POST['foodno']."', '".$_POST['hplatter']."', '".$_POST['cplatter']."', '".$_POST['fullmeal']."', '".$_POST['fother']."', '".$_POST['fotherdetails']."', '".$_POST['costhplatter']."', '".$_POST['costcplatter']."', '".$_POST['costfother']."', '".$_POST['transport']."', '".$_POST['transportdetails']."', '".$_POST['smoking']."', '".$_POST['smokingdetails']."')";
-
-
+$query1 = "INSERT INTO venue (venuename, website, address1, address2, address3, city, county, phonenumber, type, othertype, christenings, eighteenparties, twentyoneparties, otheragesparties, kidsparties, henstagparties, weddings, funerals, corporate, sports, otherparties, othereventtype, starthour, closehour, internet, internetdetails, parking, parkingdetails, children, childrendetails, foodyes, foodno, hplatter, cplatter, fullmeal, fother, fotherdetails, costhplatter, costcplatter, costfother, transport, transportdetails, smoking, smokingdetails, musicyes, musicno, mdj, mband, mkaraoke, mother, motherdetails, entertain, entertaindetails, paymentpolicy, cancellationpolicy, addfee, addinfo, agreeyes, agreeno) VALUES ('".$_POST['venuename']."', '".$_POST['website']."', '".$_POST['address1']."', '".$_POST['address2']."', '".$_POST['address3']."', '".$_POST['city']."', '".$_POST['county']."', '".$_POST['phonenumber']."', '".$_POST['type']."', '".$_POST['othertype']."', '".$_POST['christenings']."', '".$_POST['eighteenparties']."', '".$_POST['twentyoneparties']."', '".$_POST['otheragesparties']."', '".$_POST['kidsparties']."', '".$_POST['henstagparties']."', '".$_POST['weddings']."', '".$_POST['funerals']."', '".$_POST['corporate']."', '".$_POST['sports']."', '".$_POST['otherparties']."', '".$_POST['othereventtype']."', '".$_POST['starthour']."', '".$_POST['closehour']."', '".$_POST['internet']."', '".$_POST['internetdetails']."', '".$_POST['parking']."', '".$_POST['parkingdetails']."', '".$_POST['children']."', '".$_POST['childrendetails']."', '".$_POST['foodyes']."', '".$_POST['foodno']."', '".$_POST['hplatter']."', '".$_POST['cplatter']."', '".$_POST['fullmeal']."', '".$_POST['fother']."', '".$_POST['fotherdetails']."', '".$_POST['costhplatter']."', '".$_POST['costcplatter']."', '".$_POST['costfother']."', '".$_POST['transport']."', '".$_POST['transportdetails']."', '".$_POST['smoking']."', '".$_POST['smokingdetails']."', '".$_POST['musicyes']."', '".$_POST['musicno']."', '".$_POST['mdj']."', '".$_POST['mband']."', '".$_POST['mkaraoke']."', '".$_POST['mother']."', '".$_POST['motherdetails']."', '".$_POST['entertain']."', '".$_POST['entertaindetails']."', '".$_POST['paymentpolicy']."', '".$_POST['cancellationpolicy']."', '".$_POST['addfee']."', '".$_POST['addinfo']."', '".$_POST['agreeyes']."', '".$_POST['agreeno']."')";
 $query2 = "INSERT INTO space (tables, floor, room, complete, costoftables, costoffloor, costofroom, costofcomplete, minpeoptables, maxpeoptables, minpeopfloor, maxpeopfloor, minpeoproom, maxpeoproom, minpeopcomplete, maxpeopcomplete) VALUES ('".$_POST['tables']."', '".$_POST['floor']."', '".$_POST['room']."', '".$_POST['complete']."', '".$_POST['costoftables']."', '".$_POST['costoffloor']."', '".$_POST['costofroom']."', '".$_POST['costofcomplete']."', '".$_POST['minpeoptables']."', '".$_POST['maxpeoptables']."', '".$_POST['minpeopfloor']."', '".$_POST['maxpeopfloor']."', '".$_POST['minpeoproom']."', '".$_POST['maxpeoproom']."', '".$_POST['minpeopcomplete']."', '".$_POST['maxpeopcomplete']."')";
 
 
- 
-
 $result = mysqli_query($dbConnection, $query1);
-
 $result = mysqli_query($dbConnection, $query2);
 
 
     mysqli_commit($dbConnection);
 
     echo "All queries were executed successfully";
-
 
 
 mysqli_close($dbConnection);
@@ -451,9 +429,7 @@ mysqli_close($dbConnection);
 		
 		</br>
 		
-		<form action="upload.php" method="post" enctype="multipart/form-data">
-		Select image to upload:
-		<input type="file" name="fileToUpload" id="fileToUpload">
+		
     
 
 		<!--	
@@ -493,85 +469,89 @@ mysqli_close($dbConnection);
 			</td></tr>
 		</div>
 		
-	
-
+	-->
 		
-		<form action="upload1.php" method="post" enctype="multipart/form-data">
-			Select your first image to upload:
-			<input type="file" name="fileToUpload" id="fileToUpload">
-		</form>
+			<tr><td>Do you provide music:</td><td></br>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox18" name="musicyes" value="Y"> Yes
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox19" name="musicno" value="Y"> No
+		</label>
 		</br>
 		
-		<tr><td>Music:</td><td></br>
-		<div class="btn-group" role="group" aria-label="MUSIC" id="typemusic">
-		</td></tr>
-			<button type="button" class="btn btn-default">Yes</button>
-			<button type="button" class="btn btn-default">No</button>
-		</div>
-		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Which type?
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#">DJ</a></li>
-				<li><a href="#">Band</a></li>
-				<li><a href="#">Karaoke</a></li>
-				<li><a href="#">Other</a></li>
-			</ul>
-		</div>
+		<tr><td>Which Type:</td><td></br>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox20" name="mdj" value="Y"> DJ
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox21" name="mband" value="Y"> Band
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox22" name="mkaraoke" value="Y"> Karaoke
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox23" name="mother" value="Y"> Other
+		</label>
 		
+	</br>
+			<div class="form-group">
+				<tr><td>If Other, Please Specify:</td><td>
+					<input type="text" class="form-control" name="motherdetails">
+				</td></tr>
+			</div>
 		
-		<div class="form-group" id="othermusic">
-				<input type="text" class="form-control" name="musicother" placeholder="If Other, Please Specify" maxlength="100" >
-		</div>
-		
-		
-		</br>
 		
 		</br>
 		
-			<tr><td>Do you offer any other form of Entertainment?  If yes, please provide details:</td><td>
+			<tr><td>Do you offer any other form of Entertainment?  If yes, please include details:</td><td>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="input-group">
 				<span class="input-group-addon">
-				<input type="checkbox" aria-label="">
+				<input type="checkbox" name="entertain" value="Y">
 				</span>
-				<input type="text" class="form-control" aria-label="">
+				<input type="text" class="form-control" name="entertaindetails">
 				</div>
 				</td></tr>
 			</div>
 		</div>
+		
 		</br>
-		
-		
+				
 		<div class="form-group">
 			<tr><td>What are your payment policies?:</td><td>
-				<input type="text" class="form-control" name="paymentpolicies" placeholder="" maxlength="300">
+				<input type="text" class="form-control" name="paymentpolicy" placeholder="" maxlength="200">
 			</td></tr>
 		</div>
 
 		<div class="form-group">
 			<tr><td>What are your cancellation policies?:</td><td>
-				<input type="text" class="form-control" name="cancellationpolicies" placeholder="" maxlength="300">
+				<input type="text" class="form-control" name="cancellationpolicy" placeholder="" maxlength="200">
 			</td></tr>
 		</div>
 
 		<div class="form-group">
 			<tr><td>Do you have any additional fees for services?:</td><td>
-				<input type="text" class="form-control" name="paymentpolicies" placeholder="" maxlength="300">
+				<input type="text" class="form-control" name="addfee" placeholder="" maxlength="200">
 			</td></tr>
 		</div>
 		
 			<div class="form-group">
 			<tr><td>Any other additional information to provide:</td><td>
-				<input type="text" class="form-control" name="paymentpolicies" placeholder="" maxlength="300">
+				<input type="text" class="form-control" name="addinfo" placeholder="" maxlength="200">
 			</td></tr>
 		</div>
 		
-		
--->
+			<tr><td>Do you confirm the agreement between your venue and planmyevent.eu:</td><td></br>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox24" name="agreeyes" value="Y"> Yes
+		</label>
+		<label class="form-check-inline">
+		  <input class="form-check-input" type="checkbox" id="inlineCheckbox25" name="agreeno" value="Y"> No
+		</label>
+		</br>
+
 		
 		</br>
 		</br>

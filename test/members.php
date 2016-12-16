@@ -1,4 +1,4 @@
-<?php include 'navbar.php';
+<?php include 'navbar2.php';
 ?>
 
 <?php
@@ -20,11 +20,7 @@ include 'dbconnection.php';
 			header("Location: login.php"); 
  		}
 		//otherwise they are shown the admin area
-		else{
-		
- 			 echo "Admin Area<p>"; 
-     echo "Your Content<p>"; 
-     echo "<a href=logout.php>Logout</a>"; 
+		else{ 
  		}
 	}
 }
@@ -44,48 +40,17 @@ include 'dbconnection.php';
  <head>
  <title></title>
  <body>
+ <div class="jumbotron" id="adminconsole">
+<button type="button" class="btn btn-secondary btn-lg" id="empbutton" onclick="location.href = 'employees.php';">Employees</br><img src="../images/employees.png"/></button>
+<button type="button" class="btn btn-secondary btn-lg" id="venbutton" onclick="location.href = 'venues.php';">Venues</br><img src="../images/venue.png"/></button>
+<button type="button" class="btn btn-secondary btn-lg" id="boobutton" onclick="location.href = 'calendar.php';">Bookings</br><img src="../images/calendar2.png"/> </button></br></br>
+<button type="button" class="btn btn-secondary btn-lg" id="revbutton" onclick="location.href = 'reviews.php';">Reviews</br><img src="../images/reviews.png"/></button>
+<button type="button" class="btn btn-secondary btn-lg" id="dasbutton" onclick="location.href = 'dashboard1.php';">Dashboard</br><img src="../images/graph.png"/></button>
+<button type="button" class="btn btn-secondary btn-lg" id="detbutton" onclick="location.href = 'vdetails.php';" >Your Details</br><img src="../images/details.png"/></button>
+</div>
  
-	
- <table width="600px" border="1" cellpadding="1" cellspacing="1">
- <tr>
- <th>username</th> <th>Password</th> <th>ID</th> <th>Email</th> <th>Address Line 1</th> <th>Address Line 2</th>
- </tr>
- 
- <?php
- 
- while($owner=mysql_fetch_assoc($records)){
 
-	echo "<tr>";
-	
-	echo "<td>".$owner['username']."</td>";
-	
-	echo "<td>".$owner['password']."</td>";
-	
-	echo "<td>".$owner['ID']."</td>";
-	
-	echo "<td>".$owner['email']."</td>";
-	
-	echo "<td>".$owner['address1']."</td>";
-	
-	echo "<td>".$owner['address2']."</td>";
-	
-	echo "</tr>";
-	 
- } //end while
- echo $username;
- ?>
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- </table>
+
  </body>
  </html>
